@@ -1,0 +1,24 @@
+# fibonacci number (1e18) % mod by fast doubling method
+snippet $fibo
+	pair<Mint , Mint> get(long long int n) {
+		if(n == 0) return {0 , 1};
+		pair<Mint , Mint> s = get(n / 2);
+		Mint f = 2 * s.second;
+		f -= s.first;
+		f *= s.first;
+		Mint se1 = s.first;
+		se1 *= s.first;
+		Mint se2 = s.second;
+		se2 *= s.second;
+		se1 += se2;
+		if(n & 1) {
+			Mint ss = f + se1;
+			return {se1 , ss};
+		}
+		return {f , se1};
+	}
+
+	Mint fibo(long long int n) {
+		pair<Mint , Mint> ans = get(n);
+		return ans.first;
+	}

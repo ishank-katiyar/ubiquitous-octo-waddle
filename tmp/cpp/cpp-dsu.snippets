@@ -1,0 +1,37 @@
+snippet $dsu
+	class DSU {
+	public:
+		int n;
+		vector<int> Parent;
+		vector<int> Size;
+		DSU (int N) {
+			n = N;
+			Parent.assign(n + 1, 0);
+			Size.assign(n + 1, 0);
+			make_set();
+		}
+		
+		void make_set() {
+			for(int i = 0; i <= n; i++) {
+				Parent[i] = i;
+				Size[i] = 1;
+			}
+		}
+		
+		int rep(int N) {
+			if(Parent[N] == N) return N;
+			return Parent[N] = rep(Parent[N]);
+		}
+		
+		void Union(int A, int B) {
+			int RA = rep(A);
+			int RB = rep(B);
+			if(RA != RB) {
+				if(Size[RA] < Size[RB]) {
+					swap(RA, RB);
+				}
+				Parent[RB] = RA;
+				Size[RA] += Size[RB];
+			}
+		}
+	};

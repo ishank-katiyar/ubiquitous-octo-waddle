@@ -1,0 +1,175 @@
+# matrix template
+snippet $mat
+	template<class X>
+	class matrix {
+		public:
+			int row , column;  
+			vector<vector<X>> M;
+			matrix(vector<vector<X>> MM) {
+				row = (int) MM.size();
+				column = (int) MM[0].size();
+				M = MM;
+			}
+			matrix(int r , int c) {
+				row = r;
+				column = c; 
+				M.assign(row , vector<X> (column));
+			}
+			matrix(int r , int c , X value) {
+				row = r;
+				column = c;
+				M.assign(row , vector<X> (column , value));
+			}
+			vector<X>& operator [] (int idx) {
+				if(idx < 0 || idx >= row) {
+					throw out_of_range("In matrix : " + to_string(idx) + " is out of range [0 , " + to_string(row - 1) + "]"); 
+				}
+				return M[idx];
+			}
+			template<class T> ostream& operator << (matrix<T> a);
+			matrix operator + (matrix b);
+			matrix operator - (matrix b);
+			matrix operator * (matrix b);
+			matrix operator / (matrix b);
+			matrix operator + (X b);
+			matrix operator - (X b); 
+			matrix operator * (X b); 
+			matrix operator / (X b); 
+			matrix operator ^ (long long int b); 
+			void operator += (matrix a);
+			void operator -= (matrix a);
+			void operator *= (matrix a);
+			void operator /= (matrix a);
+			void operator += (X b);
+			void operator -= (X b); 
+			void operator *= (X b); 
+			void operator /= (X b); 
+			void operator ^= (long long int b);
+			bool operator == (matrix a);
+			bool operator != (matrix a);
+			matrix transpose();
+	};
+
+	template<class T> ostream& operator << (ostream& cout , matrix<T> a) {
+		int row = a.row;
+		int column = a.column;
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < column; j++) cout << a[i][j] << ' ';
+			cout << " \n"[i != row - 1]; 
+		}
+		return cout;
+	}
+
+	template<class X> matrix<X> matrix<X>::operator + (matrix<X> b) {
+		if(row != b.row || column != b.column) {
+			throw logic_error("Addition of matrices with different Dimensions");
+		}
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < column; j++) M[i][j] += b[i][j];
+		} 
+		return *this;
+	}
+
+	template<class X> matrix<X> matrix<X>::operator - (matrix<X> b) {
+		if(row != b.row || column != b.column) {
+			throw logic_error("Subtraction of matrices with different Dimensions");
+		}
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < column; j++) M[i][j] -= b[i][j];
+		} 
+		return *this;
+	}
+
+	template<class X> matrix<X> matrix<X>::operator * (matrix<X> b) {
+		if(column != b.row) {
+			throw logic_error("Multiplication of martices with different Dimensions");
+		}
+		int r = row;
+		int col = b.column;
+		matrix<X> ret(r , col);
+		for(int i = 0; i < r; i++) {
+			for(int j = 0; j < col; j++) {
+				X value = 0;
+				for(int k = 0; k < column; k++) value += (M[i][k] * b[k][j]);
+				ret[i][j] = value;
+			}
+		}
+		return ret;
+	}
+
+	template<class X> matrix<X> matrix<X>::operator / (matrix<X> b) {
+		return *this * inv(b);
+	}
+
+	template<class X> matrix<X> matrix<X>::operator + (X b) {
+		return *this + matrix(row , column , b);
+	}
+
+	template<class X> matrix<X> matrix<X>::operator - (X b) {
+		return *this - matrix(row , column , b);
+	}
+
+	template<class X> matrix<X> matrix<X>::operator * (X b) {
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < column; j++) M[i][j] *= b;
+		}
+		return *this;
+	}
+
+	template<class X> matrix<X> matrix<X>::operator / (X b) {
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < column; j++) M[i][j] /= b;
+		}
+		return *this;
+	}
+
+	template<class X> matrix<X> matrix<X>::operator ^ (long long int b) {
+		b--;
+		matrix<X> ret = *this;
+		matrix<X> a = *this;
+		while(b) {
+			if(b % 2 == 1) ret = ret * a;
+			a = a * a;
+			b /= 2;
+		}
+		return ret;
+	}
+
+	template<class X> void matrix<X>::operator += (matrix<X> b) {*this = *this + b;}
+	template<class X> void matrix<X>::operator -= (matrix<X> b) {*this = *this - b;}
+	template<class X> void matrix<X>::operator *= (matrix<X> b) {*this = *this * b;}
+	template<class X> void matrix<X>::operator /= (matrix<X> b) {*this = *this / b;}
+	template<class X> void matrix<X>::operator += (X b) {*this = *this + b;}
+	template<class X> void matrix<X>::operator -= (X b) {*this = *this - b;}
+	template<class X> void matrix<X>::operator *= (X b) {*this = *this * b;}
+	template<class X> void matrix<X>::operator /= (X b) {*this = *this / b;}
+	template<class X> void matrix<X>::operator ^= (long long int b) {*this = *this ^ b;}
+	template<class X> bool matrix<X>::operator == (matrix<X> a) {
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < column; j++) if(M[i][j] != a[i][j]) return false;
+		}
+		return true;
+	}
+	template<class X> bool matrix<X>::operator != (matrix<X> a) {return !(*this == a);}
+
+	template<class X> matrix<X> matrix<X>::transpose() {
+		matrix<X> ret(column , row);
+		for(int i = 0; i < column; i++) {
+			for(int j = 0; j < row; j++) {
+				ret[i][j] = M[j][i];
+			}
+		}
+		return ret;
+	}
+ 
+	/*
+	Mint fibo_mat(long long int n) {
+		matrix<Mint> a(1 , 2 , 1);
+		a[0][0] = 0;
+		matrix<Mint> P(2 , 2 , 1);
+		P[0][0] = 0;
+		P ^= n;
+		a *= P;
+		return a[0][0];
+	}
+	*/

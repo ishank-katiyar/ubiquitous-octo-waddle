@@ -1,0 +1,12 @@
+# binary exponention template
+snippet $bpow
+	template<class X, class Y>
+	X bpow(X a , Y b) {
+		X res(1);
+		while(b) {
+			if(b % 2 == 1) res *= a;
+			a *= a;
+			b /= 2;
+		}
+		return res;
+	}
