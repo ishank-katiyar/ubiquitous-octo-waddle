@@ -1,0 +1,35 @@
+#!/bin/bash
+#This script displays microphone status and allows mouse control of volume, mute, as well as launching pavucontrol
+#Forked by sleepyeyesvince, based on a script originally found here: https://github.com/Anachron/i3blocks/blob/master/blocks/microphone
+#depends on: otf-font-awesome ttf-font-awesome
+
+MIC_ON_SYMBOL=
+MIC_MUTED_SYMBOL=
+
+
+statusLine=$(amixer get Capture | tail -n 1)
+status=$(echo "${statusLine}" | grep -wo "on")
+volume=$(echo "${statusLine}" | awk -F ' ' '{print $5}' | tr -d '[]%')
+device=$(pacmd list-sources | grep "* index" -A52 | grep "device.description" | sed 's/^[ \t]*device.description = //g' | tr -d '"')
+
+if [[ "${status}" == "on" ]]; then
+  echo "$MIC_ON_SYMBOL ${volume}% [$device]"
+  echo "$MIC_ON_SYMBOL ${volume}% [$device]" 
+  echo "#fa8282"
+else
+  echo "$MIC_MUTED_SYMBOL off"
+  echo "$MIC_MUTED_SYMBOL off"
+  echo ""
+fi
+
+
+case "$BLOCK_BUTTON" in
+
+    1) amixer -q sset Capture toggle ;;  # left click, mute/unmute
+    2) amixer -q sset Capture toggle ;; # middle click, mute/unmute
+    3) pavucontrol &>/dev/null & ;; #right click, launch pavucontrol
+    4) amixer -q sset Capture 5%+ ;; # scroll up, increase
+    5) amixer -q sset Capture 5%- ;; # scroll down, decrease
+esac
+
+

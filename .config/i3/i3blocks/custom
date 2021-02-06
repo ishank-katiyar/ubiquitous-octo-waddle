@@ -1,0 +1,12 @@
+#!/bin/bash
+
+case "$BLOCK_BUTTON" in
+    1) notify-send "left click"  ;; # left click
+    # 1) bash /home/ishank/.config/rofi/application_launcher.sh  ;; # left click
+    3) notify-send "right click" ;; # right click
+    # 3) bash /home/ishank/.config/rofi/powermenu.sh ;; # right click
+    4) notify-send "scroll up" ;; # scroll up
+    5) notify-send "scroll down" ;; # scroll down
+esac
+
+echo ""

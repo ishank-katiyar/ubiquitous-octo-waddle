@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#This script will display the current cpu frequency
+#http://www.emadelsaid.com/posts/getting-your-cpu-speed-in-ghz-on-linux/
+
+#Alternate command
+#CPU_FREQ=$(lscpu | grep "CPU MHz" | awk '{print $3}' | sed -r 's/\.([0-9]+)/MHz/g')
+
+#Current command
+CPU_FREQ=$(lscpu | awk '/CPU MHz/ {printf("%.1fGHz",$3/1000); }')
+
+if [[ "${CPU_FREQ}" != "" ]]; then
+  echo "${CPU_FREQ}"
+  echo "${CPU_FREQ}"
+  
+fi
+
+# Click Actions
+case "$BLOCK_BUTTON" in
+    1) xfce4-terminal -e htop & ;;    # left click
+    3) xfce4-taskmanager & ;;    #right click
+esac

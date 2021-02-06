@@ -1,0 +1,181 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align=center
+# border_top=5
+# border_bottom=2
+# border_left=5
+# border_right=5
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# command=/usr/share/i3blocks/$BLOCK_NAME
+separator_block_width=20
+markup=none
+
+
+[window]
+command=/home/ishank/.config/i3/i3blocks/window
+interval=1
+color=#6cddf7
+
+# [mediaplayer-vlc]
+# command=/home/ishank/.config/i3/i3blocks/mediaplayer
+# instance=vlc
+# label= 
+# interval=5
+# # signal=10
+# color=#ffab63
+# 
+# [mediaplayer-pragha]
+# command=/home/ishank/.config/i3/i3blocks/mediaplayer
+# instance=pragha
+# label= 
+# interval=5
+# signal=10
+# color=#ffab63
+
+# [weather Lucknow example]
+# command=/home/ishank/.config/i3/i3blocks/weather 3697_pc
+# interval=900
+# label=E 
+# separator=false
+# separator_block_width=7 
+
+
+[memory]
+command=/home/ishank/.config/i3/i3blocks/memory
+#label= 
+#label= 
+#label= 
+label= 
+interval=30
+color=#f776ea
+align=center
+# separator=false
+# separator_block_width=7
+
+[cpu]
+command=/home/ishank/.config/i3/i3blocks/cpu
+#label= 
+label= 
+interval=5
+color=#f776ea
+min_width=00%
+#align=center
+#separator_block_width=7
+
+[cpu_freq]
+command=/home/ishank/.config/i3/i3blocks/cpu_freq
+label= 
+interval=1
+color=#f776ea
+min_width= 0.0GHz
+
+[ssid]
+command=/home/ishank/.config/i3/i3blocks/ssid
+label= 
+interval=60
+color=#00FF00
+separator=false
+separator_block_width=7
+
+[wifi]
+command=/home/ishank/.config/i3/i3blocks/wifi
+# instance=wlo1
+interval=10
+separator=false
+separator_block_width=7
+
+[bandwidth]
+#instance=eth0
+interval=5
+color=#00FF00
+command=/home/ishank/.config/i3/i3blocks/bandwidth
+
+[volume-pulseaudio]
+command=/home/ishank/.config/i3/i3blocks/volume-pulseaudio -C '#6cddf7' -F '♪ ${VOL}%'
+interval=1
+signal=10
+#label=VOL
+#label=♪
+#MIXER=[determined automatically]
+#SCONTROL=[determined automatically]
+##exposed format variables: ${SYMB}, ${VOL}, ${INDEX}, ${NAME}
+#LONG_FORMAT="${SYMB} ${VOL}% [${INDEX}:${NAME}]"
+#SHORT_FORMAT="${SYMB} ${VOL}% [${INDEX}]"
+#AUDIO_HIGH_SYMBOL='  '
+#AUDIO_MED_THRESH=50
+#AUDIO_MED_SYMBOL='  '
+#AUDIO_LOW_THRESH=0
+#AUDIO_LOW_SYMBOL='  '
+#AUDIO_DELTA=5
+#DEFAULT_COLOR="#ffffff"
+#MUTED_COLOR="#a0a0a0"
+#USE_ALSA_NAME=0
+#USE_DESCRIPTION=0
+## SUBSCRIBE=1 requires interval=persist and always uses LONG_FORMAT
+#SUBSCRIBE=0
+
+[microphone]
+command=/home/ishank/.config/i3/i3blocks/microphone
+interval=1
+
+[brightness]
+#label=BRI
+label= 
+command=/home/ishank/.config/i3/i3blocks/brightness
+align=right
+instance=5
+interval=1
+signal=11
+min_width=00%
+# separator=false
+color=#fcf135
+# separator_block_width=7
+
+[battery]
+#label=BAT
+label=⚡ 
+command=/home/ishank/.config/i3/i3blocks/battery
+#instance=1
+interval=30
+color=#fcf135
+
+
+
+[calendar]
+command=/home/ishank/.config/i3/i3blocks/calendar
+interval=1
+label= 
+color=#ffffff
+# separator_block_width=150
+# DATEFMT=++%a %d-%m-%Y %H:%M:%S
+# SHORTFMT=+%H:%M:%S
+# HEIGHT=180
+# WIDTH=220
+
+# [custom]
+# label= 
+# command=/home/ishank/.config/i3/i3blocks/custom
+# interval=once
+# color=#ffffff
