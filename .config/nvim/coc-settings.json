@@ -1,0 +1,75 @@
+{
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                },
+                "clang": {
+                    "extraArgs": [
+                        "-O2",
+                        "-std=c++17",
+                        "-Wall",
+                        "-Wextra",
+                        "-Wshadow",
+                        "-Wno-unused-result",
+                        "-DLOCAL"
+                    ]
+                },
+                "index": {
+                    "onChange": true
+                },
+                "highlight": { "lsRanges": true }
+            }
+        },
+        "intelephense": {
+            "enable": true,
+            "command": "intelephense",
+            "args": ["--stdio"],
+            "filetypes": ["php"],
+            "initializationOptions": {
+                "storagePath": "/tmp/intelephense"
+            },
+            "settings": {
+                "intelephense": {
+                    "diagnostics": {
+                        "undefinedTypes": false,
+                        "undefinedFunctions": true,
+                        "undefinedConstants": true,
+                        "undefinedClassConstants": true,
+                        "undefinedMethod": true,
+                        "undefinedProperties": true,
+                        "undefinedSymbols": true,
+                        "undefinedVariables": true,
+                        "unusedVariable": false
+                    },
+                    "files": {
+                        "maxSize": 1000000,
+                        "associations": ["*.php", "*.phtml"]
+                    },
+                    "completion": {
+                        "insertUseDeclaration": true,
+                        "fullyQualifyGlobalConstantsAndFunctions": false,
+                        "triggerParameterHints": true,
+                        "maxItems": 15
+                    },
+                    "format": {
+                        "enable": true
+                    }
+                }
+            }
+        }
+    },
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": false,
+    "python.linting.enabled": true
+}
