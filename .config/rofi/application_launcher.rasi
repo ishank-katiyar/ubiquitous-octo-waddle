@@ -20,22 +20,22 @@ configuration {
 	sidebar-mode: 					false;
 }
 
-* {
-    /* background:                     #00000000; */
-    background-alt:                 #00000000;
-    background-bar:                 #f2f2f215;
-    background:                     rgba(15, 15, 15, 0.5);
-    /* background:                     rgba(0, 0, 0, 0.7); */
-    /* background-alt:              	rgba(15, 15, 15, 0.7); */
-    /* background-alt:              	rgba(0, 0, 0, 0.4); */
-    /* background-bar:                 rgba(15, 15, 15, 0.7); */
-    /* background-bar:                 rgba(0, 0, 0, 0.4); */
-    foreground:                     #f2f2f2EE;
-    accent:			            	#3DAEE966;
-}
+/* * { */
+/*     [> background:                     #00000000; <] */
+/*     background-alt:                 #00000000; */
+/*     background-bar:                 #f2f2f215; */
+/*     background:                     rgba(15, 15, 15, 0.4); */
+/*     [> background:                     rgba(0, 0, 0, 0.7); <] */
+/*     [> background-alt:              	rgba(15, 15, 15, 0.7); <] */
+/*     [> background-alt:              	rgba(0, 0, 0, 0.4); <] */
+/*     [> background-bar:                 rgba(15, 15, 15, 0.7); <] */
+/*     [> background-bar:                 rgba(0, 0, 0, 0.4); <] */
+/*     foreground:                     #f2f2f2EE; */
+/*     accent:			            	#3DAEE966; */
+/* } */
 
 window {
-    /* transparency:                   "real"; */
+    transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
     border:							0px;
@@ -76,11 +76,11 @@ inputbar {
 
 listview {
     background-color:               @background-alt;
-    columns:                        8;
+    columns:                        6;
     lines:                          4;
     spacing:                        0%;
-    cycle:                          false;
-    dynamic:                        true;
+    cycle:                          true;
+    dynamic:                        false;
     layout:                         vertical;
 }
 
@@ -92,6 +92,7 @@ mainbox {
     children:                       [ inputbar, listview ];
     spacing:                       	8%;
     padding:                        10% 12.5% 10% 12.5%;
+    /* padding:                        5% 4.5% 5% 4.5%; */
 }
 
 element {
@@ -103,7 +104,7 @@ element {
 }
 
 element-icon {
-    size:                           80px;
+    size:                           90px;
     border:                         0px;
 }
 
@@ -117,9 +118,10 @@ element-text {
 element selected {
     background-color:               @background-bar;
     text-color:                     @foreground;
-	/* border:							0% 0% 0% 0%; */
-	border:							4px;
+    /* border:							0% 0% 0% 0%; */
+    border:							4px;
     border-radius:                  8px;
     /* border-color:                  	@accent; */
-    border-color:                  	"#000000";
+    border-color:                  	#ffffff;
 }
+

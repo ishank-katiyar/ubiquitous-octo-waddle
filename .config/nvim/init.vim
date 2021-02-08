@@ -402,3 +402,4 @@ autocmd BufWritePre *.js Format
 " nnoremap <tab> <C-i>
 " }}}
 " hi Normal guibg=NONE ctermbg=NONE
+au BufNewFile,BufRead /*.rasi setf css

@@ -174,4 +174,4 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # neofetch | lolcat
-pfetch | lolcat
+pfetch

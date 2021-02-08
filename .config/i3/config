@@ -67,7 +67,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+slash exec rofi -show run -show-icons -theme application_launcher.rasi -font "Hack, 15"
-bindsym $mod+Mod1+slash exec rofi -show run -show-icons -theme application_launcher.rasi
+bindsym $mod+Mod1+slash exec rofi -show run -theme executable_launcher.rasi
 bindsym $mod+slash exec /home/ishank/.config/rofi/application_launcher.sh
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -332,7 +332,7 @@ for_window [class=".*"] border pixel 0
 ###################
 # i3-GAPS SETTING #
 ###################
-gaps inner 10
+# gaps inner 10
 # smart_gaps on
 # gaps outer 1
 # Activate smart borders (always)
