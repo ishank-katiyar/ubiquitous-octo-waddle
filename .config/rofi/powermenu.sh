@@ -47,7 +47,7 @@ fi
 # echo $PRESELECTION
                  # -fake-background ${SS_PATH}.png -fake-transparency \
 
-sed -i '163s/.*/blur-strength = 8;/' ~/.config/picom/picom.conf
+# sed -i '163s/.*/blur-strength = 8;/' ~/.config/picom/picom.conf
 
 selected="$(echo -e "$options" | 
             rofi -show-icons -theme powermenu_theme.rasi \
@@ -57,33 +57,34 @@ selected="$(echo -e "$options" |
 case $selected in
 
     $shutdown)
-        sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
+        # sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
         systemctl poweroff
         ;;
 
     $reboot)
-        sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
+        # sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
         systemctl reboot
         ;;
 
     $sleep)
-        sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
+        # sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
         systemctl suspend
         ;;
 
     $logout)
         # cinnamon-session-quit --logout --no-prompt || ( xfce4-session-logout --logout || mate-session-save --logout )
         # systemctl restart lightdm
-        sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
-        killall i3
+        # sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
+        # killall xmonad
+        notify-send "Cannot logout xmonad"
         ;;
 
     $lock)
-        sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
+        # sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
         i3lock
         ;;
     *)
-        sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
+        # sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
         ;;
 
 esac

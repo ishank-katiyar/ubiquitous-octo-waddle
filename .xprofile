@@ -1,0 +1,8 @@
+# keyboard laybout
+# setxkbmap ch &
+
+# wallpaper
+# ./.fehbg
+
+# compositor 
+# picom --experimental-backends&

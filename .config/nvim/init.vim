@@ -348,8 +348,8 @@ set nofoldenable
 
 "Set colorscheme {{{
 " colorscheme gruvbox
-" colorscheme onedark
-colorscheme solarized8
+colorscheme onedark
+" colorscheme solarized8
 " }}}
 
 " Importing aliases from ~/.bash_aliases file {{{

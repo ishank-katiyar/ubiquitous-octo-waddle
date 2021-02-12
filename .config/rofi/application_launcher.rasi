@@ -20,19 +20,19 @@ configuration {
 	sidebar-mode: 					false;
 }
 
-/* * { */
-/*     [> background:                     #00000000; <] */
-/*     background-alt:                 #00000000; */
-/*     background-bar:                 #f2f2f215; */
-/*     background:                     rgba(15, 15, 15, 0.4); */
-/*     [> background:                     rgba(0, 0, 0, 0.7); <] */
-/*     [> background-alt:              	rgba(15, 15, 15, 0.7); <] */
-/*     [> background-alt:              	rgba(0, 0, 0, 0.4); <] */
-/*     [> background-bar:                 rgba(15, 15, 15, 0.7); <] */
-/*     [> background-bar:                 rgba(0, 0, 0, 0.4); <] */
-/*     foreground:                     #f2f2f2EE; */
-/*     accent:			            	#3DAEE966; */
-/* } */
+* {
+    /* background:                     #00000000; */
+    background-alt:                 #00000000;
+    background-bar:                 #f2f2f215;
+    background:                     rgba(15, 15, 15, 0.8);
+    /* background:                     rgba(0, 0, 0, 0.7); */
+    /* background-alt:              	rgba(15, 15, 15, 0.7); */
+    /* background-alt:              	rgba(0, 0, 0, 0.4); */
+    /* background-bar:                 rgba(15, 15, 15, 0.7); */
+    /* background-bar:                 rgba(0, 0, 0, 0.4); */
+    foreground:                     #f2f2f2EE;
+    accent:			            	#3DAEE966;
+}
 
 window {
     transparency:                   "real";

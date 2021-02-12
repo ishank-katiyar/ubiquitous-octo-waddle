@@ -202,7 +202,7 @@ bindsym $mod+Shift+r restart
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 
-set $resize_width 10
+set $resize_width 1
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -322,7 +322,7 @@ bindsym Control+F9 exec xfce4-popup-clipman-actions
 # COMPOSITOR #
 ##############
 # exec_always picom -b
-exec picom --experimental-backends
+exec picom --experimental-backends&
 
 
 # You can also use any non-zero value if you'd like to have a border

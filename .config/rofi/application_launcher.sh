@@ -12,7 +12,7 @@
 # rm -f "${SS_PATH}.jpg" && scrot -z "${SS_PATH}.jpg"                 # screenshot
 # convert "${SS_PATH}.jpg" -blur 0x10 -auto-level "${SS_PATH}.jpg"    # blur
 # convert "${SS_PATH}.jpg" "${SS_PATH}.png"                           # rofi reads png images
-sed -i '163s/.*/blur-strength = 8;/' ~/.config/picom/picom.conf
+# sed -i '163s/.*/blur-strength = 8;/' ~/.config/picom/picom.conf
 
 # Font size according to screen dimensions
 DEFAULT_WIDTH=1920
@@ -24,4 +24,4 @@ rofi -show drun -show-icons -theme application_launcher.rasi \
 -font "Hack, $DEFAULT_FONTSIZE" \
 
 
-sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
+# sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
