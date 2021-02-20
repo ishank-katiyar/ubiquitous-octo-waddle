@@ -17,6 +17,8 @@ Plug 'honza/vim-snippets'
 Plug 'vimlab/split-term.vim'
 
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm install --frozen-lockfile'}
@@ -326,7 +328,7 @@ set shell=/bin/bash
 set ignorecase
 set termguicolors
 set cursorline 
-" set cursorcolumn
+set cursorcolumn
 set splitbelow splitright
 set wildmode=longest,list,full
 set nostartofline
@@ -348,8 +350,10 @@ set nofoldenable
 
 "Set colorscheme {{{
 " colorscheme gruvbox
-colorscheme onedark
+" colorscheme onedark
 " colorscheme solarized8
+colorscheme material
+" colorscheme dracula
 " }}}
 
 " Importing aliases from ~/.bash_aliases file {{{

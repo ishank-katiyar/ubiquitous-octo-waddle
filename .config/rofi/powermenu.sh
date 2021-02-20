@@ -76,7 +76,8 @@ case $selected in
         # systemctl restart lightdm
         # sed -i '163s/.*/blur-strength = 5;/' ~/.config/picom/picom.conf
         # killall xmonad
-        notify-send "Cannot logout xmonad"
+        # notify-send "Cannot logout xmonad"
+        xdotool key super+alt+Shift+control+e
         ;;
 
     $lock)

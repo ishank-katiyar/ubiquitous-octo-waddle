@@ -136,6 +136,7 @@ def main():
     # check for sample input file
     if pathlib.Path('./DATA_JSON.json').exists() == False:
         GetSample()
+    
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--f", help="file to run through samples")
@@ -178,6 +179,12 @@ def main():
                                                                fileinfo, 'red', attrs=['bold']))
         return
 
+    # check for interative problem
+    Data = json.load(open('DATA_JSON.json', 'r'))
+    if Data['interactive']:
+        sys.exit("Cannot run samples for " + termcolor.colored("INTERACTICE PROBLEM", 'red', attrs=['bold']))
+
+    # run samples now
     RunSample(Commandforexecution)
     return
 

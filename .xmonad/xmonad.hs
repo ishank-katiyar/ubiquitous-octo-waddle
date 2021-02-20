@@ -11,7 +11,7 @@ import System.IO (hPutStrLn)
 import XMonad.Layout.Fullscreen
     ( fullscreenEventHook, fullscreenManageHook, fullscreenSupport, fullscreenFull )
 import Data.Monoid ()
-import System.Exit ()
+import System.Exit
 import XMonad.Util.SpawnOnce ( spawnOnce )
 import Graphics.X11.ExtraTypes.XF86 (xF86XK_AudioLowerVolume, xF86XK_AudioRaiseVolume, xF86XK_AudioMute, xF86XK_MonBrightnessDown, xF86XK_MonBrightnessUp, xF86XK_AudioPlay, xF86XK_AudioPrev, xF86XK_AudioNext)
 import XMonad.Hooks.EwmhDesktops ( ewmh )
@@ -51,7 +51,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 2
+myBorderWidth   = 3
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -61,6 +61,8 @@ myBorderWidth   = 2
 myModMask       = mod4Mask
 
 leftAltMask     = mod1Mask
+
+rightAltMask    = mod3Mask
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -152,8 +154,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0,                    xF86XK_MonBrightnessDown), spawn "bash ~/.config/deadd/brightness.sh dec")
  
     -- Screenshot
-    , ((0,                    xK_Print), spawn "gnome-screenshot --file=/home/ishank/Pictures/Screenshot/Screenshot-$(date +\"%F_%T\").jpg")
-    , ((modm,                 xK_Print), spawn "xfce4-screenshooter")
+    , ((0,                    xK_Print), spawn "scrot /home/ishank/Pictures/Screenshot/Screenshot-$(date +'%F_%T').jpg")
+    -- , ((modm,                 xK_Print), spawn "xfce4-screenshooter")
 
     -- My Stuff
     -- , ((modm,               xK_b     ), spawn "exec ~/bin/bartoggle")
@@ -165,20 +167,20 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_c     ), kill)
 
     -- -- GAPS!!!
-    -- , ((modm .|. controlMask, xK_g), sendMessage $ ToggleGaps)               -- toggle all gaps
-    -- , ((modm .|. shiftMask, xK_g), sendMessage $ setGaps [(L,30), (R,30), (U,40), (D,60)]) -- reset the GapSpec
-    -- 
-    -- , ((modm .|. controlMask, xK_t), sendMessage $ IncGap 10 L)              -- increment the left-hand gap
-    -- , ((modm .|. shiftMask, xK_t     ), sendMessage $ DecGap 10 L)           -- decrement the left-hand gap
-    -- 
-    -- , ((modm .|. controlMask, xK_y), sendMessage $ IncGap 10 U)              -- increment the top gap
-    -- , ((modm .|. shiftMask, xK_y     ), sendMessage $ DecGap 10 U)           -- decrement the top gap
-    -- 
-    -- , ((modm .|. controlMask, xK_u), sendMessage $ IncGap 10 D)              -- increment the bottom gap
-    -- , ((modm .|. shiftMask, xK_u     ), sendMessage $ DecGap 10 D)           -- decrement the bottom gap
-    -- 
-    -- , ((modm .|. controlMask, xK_i), sendMessage $ IncGap 10 R)              -- increment the right-hand gap
-    -- , ((modm .|. shiftMask, xK_i     ), sendMessage $ DecGap 10 R)           -- decrement the right-hand gap
+    , ((modm .|. controlMask, xK_g), sendMessage $ ToggleGaps)               -- toggle all gaps
+    , ((modm .|. shiftMask, xK_g), sendMessage $ setGaps [(L,30), (R,30), (U,40), (D,60)]) -- reset the GapSpec
+    
+    , ((modm .|. controlMask, xK_t), sendMessage $ IncGap 10 L)              -- increment the left-hand gap
+    , ((modm .|. shiftMask, xK_t     ), sendMessage $ DecGap 10 L)           -- decrement the left-hand gap
+    
+    , ((modm .|. controlMask, xK_y), sendMessage $ IncGap 10 U)              -- increment the top gap
+    , ((modm .|. shiftMask, xK_y     ), sendMessage $ DecGap 10 U)           -- decrement the top gap
+    
+    , ((modm .|. controlMask, xK_u), sendMessage $ IncGap 10 D)              -- increment the bottom gap
+    , ((modm .|. shiftMask, xK_u     ), sendMessage $ DecGap 10 D)           -- decrement the bottom gap
+    
+    , ((modm .|. controlMask, xK_i), sendMessage $ IncGap 10 R)              -- increment the right-hand gap
+    , ((modm .|. shiftMask, xK_i     ), sendMessage $ DecGap 10 R)           -- decrement the right-hand gap
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
@@ -232,7 +234,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. leftAltMask,               xK_h),   moveTo Prev NonEmptyWS)
 
     -- clipboard manager
-    , ((controlMask, xK_F9), spawn "exec xfce4-popup-clipman-actions")
+    , ((controlMask, xK_F9), spawn "exec copyq toggle")
 
     -- notification center
     , ((modm, xK_a), spawn "kill -s USR1 $(pidof deadd-notification-center)")
@@ -247,8 +249,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- make focused window full screen (do full float)
     , ((modm, xK_f), withFocused $ windows . (flip W.float $ W.RationalRect 0 0 1 1))
 
-    -- Quit xmonad
+    -- powermenu.sh
     , ((modm .|. shiftMask, xK_q     ), spawn "bash ~/.config/rofi/powermenu.sh")
+
+    -- Quit xmonad
+    , ((modm .|. leftAltMask .|. shiftMask .|. controlMask , xK_e     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
@@ -340,9 +345,11 @@ myLayout = smartBorders
 myManageHook = fullscreenManageHook <+> manageDocks <+> composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
+    , className =? "copyq"           --> doFloat
+    , className =? "conky"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
-    , className  =? "Spotify"       --> doShift (myWorkspaces !! 2)
+    -- , className  =? "spotify"       --> doShift (myWorkspaces !! 2)
     , isFullscreen --> doFullFloat
     , isDialog --> doCenterFloat
                                  ]
@@ -377,13 +384,15 @@ myEventHook = mempty
 -- By default, do nothing.
 myStartupHook = do
   spawn "python3 /home/ishank/.config/i3/wallpaper/change_wallpaper.py"
-  spawnOnce "exec nm-applet &"
-  spawnOnce "exec xfce4-clipman &"
+  -- spawn "feh --bg-fill ~/Pictures/Wallpaper/49.jpg"
+  -- spawnOnce "exec nm-applet &"
   spawnOnce "exec deadd-notification-center &"
   spawnOnce "exec picom --experimental-backends &"
-  -- spawnOnce "exec brightside"
-  -- spawnOnce "exec optimus-manager-qt &"
-  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut false --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 30 &"
+  -- spawnOnce "exec brightside &"
+  -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 25 &"
+  spawnOnce "exec copyq &"
+  spawnOnce "exec lxpolkit &" -- polkit https://wiki.archlinux.org/index.php/Polkit
+  spawnOnce "bash ~/.conky/conky-startup.sh"
 
 
 ------------------------------------------------------------------------
@@ -401,19 +410,20 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 --
 -- main = xmonad $ fullscreenSupport $ docks $ ewmh defaults
 main = do
-        xmproc <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc2"
-        xmonad $ fullscreenSupport $ docks $ ewmh defaults { logHook = dynamicLogWithPP $ def { 
-              ppOutput = hPutStrLn xmproc 
-            , ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]" -- Current workspace in xmobar
-            , ppVisible = xmobarColor "#98be65" ""                -- Visible but not current workspace
-            , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
-            , ppHiddenNoWindows = xmobarColor "#c792ea" ""        -- Hidden workspaces (no windows)
-            , ppTitle = xmobarColor "#b3afc2" "" . shorten 60     -- Title of active window in xmobar
-            , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"          -- Separators in xmobar
-            , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
-            , ppExtras  = [windowCount]                           -- # of windows current workspace
-            , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
-            } }
+        -- xmproc <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc2"
+        xmonad $ fullscreenSupport $ docks $ ewmh defaults
+        -- xmonad $ fullscreenSupport $ docks $ ewmh defaults { logHook = dynamicLogWithPP $ def { 
+        --       ppOutput = hPutStrLn xmproc 
+        --     , ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]" -- Current workspace in xmobar
+        --     , ppVisible = xmobarColor "#98be65" ""                -- Visible but not current workspace
+        --     , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
+        --     , ppHiddenNoWindows = xmobarColor "#c792ea" ""        -- Hidden workspaces (no windows)
+        --     , ppTitle = xmobarColor "#b3afc2" "" . shorten 50     -- Title of active window in xmobar
+        --     , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"          -- Separators in xmobar
+        --     , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
+        --     , ppExtras  = [windowCount]                           -- # of windows current workspace
+        --     , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+        --     } }
 --         xmonad $ fullscreenSupport $ docks $ ewmh def {
 --       -- simple stuff
 --         terminal           = myTerminal,
@@ -472,7 +482,9 @@ defaults = def {
 
       -- hooks, layouts
         manageHook = myManageHook, 
-        layoutHook = gaps [(L,10), (R,10), (U,40), (D,10)] $ spacingRaw False (Border 5 5 5 5) True (Border 5 5 5 5) True $ smartBorders $ myLayout,
+        layoutHook = gaps [(L,5), (R,5), (U,5), (D,5)] $ spacingRaw True (Border 0 0 0 0) True (Border 3 3 3 3) True $ smartBorders $ myLayout,
+        -- layoutHook = gaps [(L,5), (R,5), (U,35), (D,5)] $ spacingRaw True (Border 0 0 0 0) True (Border 5 5 5 5) True $ smartBorders $ myLayout,
+        -- layoutHook = spacingRaw True (Border 5 5 5 5) True (Border 5 5 5 5) True $ smartBorders $ myLayout,
         -- layoutHook         = myLayout,
         handleEventHook    = myEventHook,
         -- logHook            = dynamicLogWithPP $ def { ppOutput = hPutStrLn xmproc },
