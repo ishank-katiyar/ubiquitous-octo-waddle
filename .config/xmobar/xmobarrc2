@@ -2,10 +2,10 @@
 -- install xmobar with these flags: --flags="with_alsa" --flags="with_mpd" --flags="with_xft"  OR --flags="all_extensions"
 -- you can find weather location codes here: http://weather.noaa.gov/index.html
 
-Config { font    = "xft:Hack:weight=bold:pixelsize=13:antialias=true:hinting=true"
-       , additionalFonts = [ "xft:Mononoki Nerd Font:pixelsize=11:antialias=true:hinting=true"
-                           , "xft:FontAwesome:pixelsize=13"
-                           , "xft:Hack:pixelsize=13:antialias=true"
+Config { font    = "xft:Hack:weight=bold:pixelsize=12:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Mononoki Nerd Font:pixelsize=10:antialias=true:hinting=true"
+                           , "xft:FontAwesome:pixelsize=12"
+                           , "xft:Hack:pixelsize=12:antialias=true"
                            ]
        , bgColor = "#282c34"
        , fgColor = "#ff6c6b"
@@ -24,9 +24,11 @@ Config { font    = "xft:Hack:weight=bold:pixelsize=13:antialias=true:hinting=tru
                     , Run Com "/home/ishank/.config/xmobar/wifi2.sh" [] "outgoing" 20
                     , Run Com "/home/ishank/.config/i3/i3blocks/battery" [] "battery" 20
                       -- Cpu usage in percent
-                    , Run Cpu ["-t", "<fn=2>\xf108</fn>  cpu: (<total>%)","-H","50","--high","red"] 20
+                    --, Run Cpu ["-t", "<fn=2>\xf108</fn>  cpu: (<total>%)","-H","50","--high","red"] 20
+                    , Run Cpu ["-t", "<fn=2>\xf108</fn> <total>%","-H","50","--high","red"] 20
                       -- Ram used number and percent
-                    , Run Memory ["-t", "<fn=2>\xf233</fn>  mem: <used>M (<usedratio>%)"] 20
+                    , Run Memory ["-t", "<fn=2>\xf233</fn> <used>M (<usedratio>%)"] 20
+                    --, Run Memory ["-t", "<fn=2>\xf233</fn>  mem: <used>M (<usedratio>%)"] 20
                       -- Disk space free
                     , Run DiskU [("/", "<fn=2>\xf0c7</fn>  hdd: <free> free")] [] 60
                       -- Runs custom script to check for pacman updates.
@@ -40,6 +42,6 @@ Config { font    = "xft:Hack:weight=bold:pixelsize=13:antialias=true:hinting=tru
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " <action=`xdotool key super+a`><icon=haskell_20.xpm/></action> <fc=#666666> | </fc> %UnsafeStdinReader% <fc=#666666>|</fc><fc=#ecbe7b> %cpu% </fc><fc=#666666>|</fc><fc=#ff6c6b> %memory% </fc><fc=#666666>|</fc><fc=#51afef> %battery% </fc><fc=#666666>|</fc><fc=#98be65> %ssid% <fn=2></fn> %outgoing% <fn=2></fn> %incomming% </fc><fc=#666666>|</fc><fc=#c678dd><fn=2> </fn> %pacupdate%</fc><fc=#666666>|</fc><fc=#46d9ff> %date% </fc>"
+       , template = " <action=`xdotool key super+a`><icon=haskell_20.xpm/></action> <fc=#666666> | </fc> %UnsafeStdinReader% }{ <fc=#666666>|</fc><fc=#ecbe7b> %cpu% </fc><fc=#666666>|</fc><fc=#ff6c6b> %memory% </fc><fc=#666666>|</fc><fc=#51afef> %battery% </fc><fc=#666666>|</fc><fc=#98be65> %ssid% <fn=2></fn> %outgoing% <fn=2></fn> %incomming% </fc><fc=#666666>|</fc><fc=#c678dd><fn=2> </fn> %pacupdate%</fc><fc=#666666>|</fc><fc=#46d9ff> %date%                 </fc>"
        -- , template = " <action=`xdotool key super+a`><icon=haskell_20.xpm/></action> <fc=#666666> | </fc> %UnsafeStdinReader% <fc=#666666> |</fc> <fc=#ecbe7b>%cpu%</fc><fc=#666666> |</fc> <fc=#ff6c6b>%memory%</fc><fc=#666666> |</fc> <fc=#51afef>%battery%</fc><fc=#666666> |</fc> <fc=#98be65>%ssid% <fn=2></fn> %outgoing% <fn=2></fn> %incomming%</fc><fc=#666666> |</fc> <fc=#c678dd><fn=2></fn> %pacupdate%</fc><fc=#666666>|</fc> <fc=#46d9ff>%date%       </fc>"
        }

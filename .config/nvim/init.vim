@@ -7,7 +7,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'ap/vim-css-color'
+Plug 'chrisbra/Colorizer'
 
 Plug 'preservim/nerdcommenter'
 
@@ -324,7 +324,7 @@ set wrap!
 set mouse=a
 set clipboard=unnamedplus
 set shellcmdflag=-ic
-set shell=/bin/bash
+set shell=/bin/zsh
 set ignorecase
 set termguicolors
 set cursorline 
@@ -402,6 +402,7 @@ source /home/ishank/.config/nvim/Filetype_setting/css.vim
 " Experiement {{{
 autocmd BufWritePre *.js Format
 " autocmd VimEnter * NERDTreeToggle
+autocmd VimEnter * ColorHighlight
 " nnoremap <Esc> :w<Esc>
 " nnoremap <tab> <C-i>
 " }}}

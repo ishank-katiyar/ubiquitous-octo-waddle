@@ -9,7 +9,7 @@
  */
 
 configuration {
-	font:							"Hack Bold 10";
+	font:							"Hack Bold 13";
     show-icons:                     true;
     icon-theme: 					"Papirus";
     display-drun: 					"";
@@ -24,7 +24,7 @@ configuration {
     /* background:                     #00000000; */
     background-alt:                 #00000000;
     background-bar:                 #f2f2f215;
-    background:                     rgba(15, 15, 15, 0.8);
+    background:                     rgba(0, 0, 0, 0.0);
     /* background:                     rgba(0, 0, 0, 0.7); */
     /* background-alt:              	rgba(15, 15, 15, 0.7); */
     /* background-alt:              	rgba(0, 0, 0, 0.4); */
@@ -41,6 +41,7 @@ window {
     border:							0px;
     border-color:					@border;
     border-radius:                  0px;
+    /* margin:                         10% 10% 10% 10%; */
 }
 
 prompt {
@@ -70,7 +71,7 @@ inputbar {
 	border:							0% 0% 0% 0%;
     border-radius:                  12px;
 	border-color:					@accent;
-    margin:                         0% 25% 0% 25%;
+    margin:                         0% 15% 0% 15%;
     padding:                        1.5%;
 }
 
@@ -92,7 +93,7 @@ mainbox {
     children:                       [ inputbar, listview ];
     spacing:                       	8%;
     padding:                        10% 12.5% 10% 12.5%;
-    /* padding:                        5% 4.5% 5% 4.5%; */
+    /* padding:                        8% 9.5% 8% 9.5%; */
 }
 
 element {
@@ -123,5 +124,6 @@ element selected {
     border-radius:                  8px;
     /* border-color:                  	@accent; */
     border-color:                  	#ffffff;
+    /* border-color:                  	rgba(0, 0, 0, 0.1); */
 }
 

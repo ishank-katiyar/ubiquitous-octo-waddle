@@ -29,7 +29,7 @@ function COMPILE(COMPILE_FLAG_NUMBER)
     " echo filename 
     " echo filenameWithoutExtension
     " echo a:COMPILE_FLAG_NUMBER
-    execute ":10Term c" . a:COMPILE_FLAG_NUMBER . " " . filename . " -o" . filenameWithoutExtension
+    execute ":10Term clear && c" . a:COMPILE_FLAG_NUMBER . " " . filename . " -o" . filenameWithoutExtension
 endfunction
 
 function RUNSAMPLE() 
@@ -41,7 +41,7 @@ function RUNSAMPLE()
     let filename = expand ('%:p')
     " echo filename
     " call system ("VTerm python3 runsample.py --f " . filename) 
-    execute ":VTerm python3 runsample.py --f " . filename
+    execute ":VTerm clear && python3 runsample.py --f " . filename
 endfunction
 
 " {{{

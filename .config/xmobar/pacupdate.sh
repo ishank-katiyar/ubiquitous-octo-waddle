@@ -1,2 +1,2 @@
 cupd=$(pacman -Sup | wc -l)
-echo "$cupd updates "
+echo "$cupd UPD "

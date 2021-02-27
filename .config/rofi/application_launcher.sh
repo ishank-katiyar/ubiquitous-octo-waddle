@@ -20,6 +20,7 @@ WIDTH=$(xdpyinfo | grep dimensions | awk '{print $2}' | cut -d 'x' -f 1 )
 DEFAULT_FONTSIZE=12
 
 rofi -show drun -show-icons -theme application_launcher.rasi \
+# rofi -show drun -show-icons -theme app1.rasi \
 # -fake-background ${SS_PATH}.png -fake-transparency \
 -font "Hack, $DEFAULT_FONTSIZE" \
 

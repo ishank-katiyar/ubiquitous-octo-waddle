@@ -14,7 +14,7 @@
   /* option-inset-padding:   4.1% 2.6% 2.5% -4.1%; */
   option-inset-padding:   4.1% 2.6% 2.5% 0%;
 
-  window-bg-color:        rgba(15, 15, 15, 0.7);
+  window-bg-color:        rgba(15, 15, 15, 0.1);
   title-text-color:       rgba(141, 145, 148, 1);
   selected-bg-color:      rgba(100, 100, 100, 0.4);
   unselected-bg-color:    rgba(100, 100, 100, 0.05);

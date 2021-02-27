@@ -94,4 +94,4 @@ case "$BLOCK_BUTTON" in
     3) nm-connection-editor & ;;
 esac
 
-echo
+# echo

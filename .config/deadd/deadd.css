@@ -9,6 +9,10 @@
     font-size: 32px;
 }
 
+.noti-center.new {
+    font-size: 20px;
+}
+
 /* Notifications */
 
 .title {
