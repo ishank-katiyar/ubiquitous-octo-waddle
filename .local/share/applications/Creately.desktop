@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Creately
+Comment=Creately tool for arch linux
+Exec=/home/ishank/tmp/Appimages/creately-7.0.14-linux-x86_64.AppImage
+Icon=/home/ishank/tmp/Appimages/Creately.png
+Terminal=false
+Type=Application
+Categories=Development
